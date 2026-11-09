@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stitch Perfect Sewing Machine Service</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Cleaning, timing calibration and troubleshooting for domestic and vintage sewing machines. 15 years at the bench. By appointment: 403-869-5104.">
+<link rel="icon" href="img/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#22122B;      /* plum black, from the logo field */
+  --plum:#4A2260;
+  --plum-2:#6B3A86;
+  --paper:#FAFAF8;    /* machine enamel */
+  --steel:#E8EBEE;    /* bench steel */
+  --steel-d:#8A9099;
+  --brass:#B8862B;
+  --thread:#E2457A;   /* the stitch */
+  --text:#2B2430;
+  --muted:#625A68;
+  --r-sm:6px; --r-lg:18px;
+  --gutter:clamp(16px,4vw,56px);
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--text);font-family:"Archivo",system-ui,sans-serif;font-variation-settings:"wdth" 100;font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--thread);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+h1,h2,h3{color:var(--ink);margin:0;line-height:1.02;letter-spacing:-.01em}
+.display{font-variation-settings:"wdth" 125;font-weight:850}
+.cond{font-variation-settings:"wdth" 62}
+h2{font-size:clamp(2rem,4.6vw,3.4rem);font-variation-settings:"wdth" 118;font-weight:800}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0 0 1em;max-width:62ch}
+.lede{font-size:1.2rem;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+.top.scrolled{border-color:var(--steel)}
+.top .wrap{display:flex;align-items:center;gap:20px;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:46px;height:46px;border-radius:50%}
+.brand span{font-variation-settings:"wdth" 75;font-weight:800;font-size:1.05rem;line-height:1.05;color:var(--ink)}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.8rem}
+.nav{margin-left:auto;display:flex;gap:28px;align-items:center}
+.nav a{text-decoration:none;font-weight:600;font-size:.95rem;position:relative}
+.nav a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:repeating-linear-gradient(90deg,var(--thread) 0 6px,transparent 6px 10px);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.nav a:not(.btn):hover::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--plum);color:#fff;text-decoration:none;font-weight:700;padding:12px 20px;border-radius:999px;border:0;font:inherit;font-weight:700;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--ink)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn svg{width:18px;height:18px}
+@media (max-width:760px){.nav .hide-s{display:none}.brand small{display:none}}
+
+.concept{background:var(--ink);color:#CFC3D8;font-size:.82rem;text-align:center;padding:7px 16px}
+.concept a{color:#fff}
+section[id]{scroll-margin-top:64px}
+.nav a[aria-current="true"]:not(.btn)::after{transform:scaleX(1)}
+.menu-btn{display:none;width:46px;height:46px;border-radius:50%;border:0;background:var(--steel);color:var(--ink);cursor:pointer;place-items:center}
+.menu-btn svg{width:22px;height:22px}
+.menu-btn .l1,.menu-btn .l2,.menu-btn .l3{transition:transform .3s,opacity .2s;transform-box:fill-box;transform-origin:center}
+.menu-btn[aria-expanded="true"] .l1{transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] .l2{opacity:0}
+.menu-btn[aria-expanded="true"] .l3{transform:translateY(-6px) rotate(-45deg)}
+.mnav{position:absolute;left:0;right:0;top:100%;box-shadow:0 20px 30px -20px rgba(34,18,43,.4);display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;background:var(--paper)}
+.mnav>div{overflow:hidden}
+.mnav.open{grid-template-rows:1fr;border-bottom:1px solid var(--steel)}
+.mnav a{display:block;padding:14px var(--gutter);text-decoration:none;font-weight:700;font-size:1.15rem;color:var(--ink);border-top:1px solid var(--steel)}
+.mnav a:first-child{border-top:0}
+@media (min-width:761px){.mnav{display:none}}
+@media (max-width:760px){.menu-btn{display:grid}.nav{gap:8px}}
+@media (max-width:420px){.nav .btn .ptxt{display:none}.nav .btn{padding:12px 14px}}
+.fnav{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+.fnav a{color:#fff;font-weight:600;text-decoration:none}
+.fnav a:hover{color:#F3A6C2}
+@media (prefers-reduced-motion:reduce){.mnav,.menu-btn *{transition:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(56px,8vw,110px);position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(2.6rem,7vw,5.6rem);font-variation-settings:"wdth" 125;font-weight:870;line-height:.95}
+.hero h1 .line{display:block}
+.seam{display:block;width:100%;height:22px;margin:18px 0 26px;overflow:visible}
+.seam path{fill:none;stroke:var(--thread);stroke-width:3;stroke-linecap:round}
+.hero p.lede{max-width:46ch}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px dashed var(--steel-d)}
+.facts div{font-size:.95rem;color:var(--muted)}
+.facts b{display:block;color:var(--ink);font-size:1.5rem;font-variation-settings:"wdth" 110;font-weight:800;line-height:1.1}
+.hero-photo{position:relative}
+.hero-photo .frame{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;background:var(--steel);box-shadow:0 30px 60px -30px rgba(34,18,43,.55)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:60% 50%;transform:scale(1.08);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.loaded .hero-photo img{transform:scale(1)}
+.tag{position:absolute;left:-22px;bottom:34px;background:#fff;border-radius:12px;padding:12px 16px 12px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 12px 30px -12px rgba(34,18,43,.4);font-size:.9rem;line-height:1.3;max-width:260px}
+.tag b{color:var(--ink)}
+.needle{width:34px;height:34px;flex:none}
+.needle .bar{animation:sew 0.9s ease-in-out infinite}
+@keyframes sew{0%,100%{transform:translateY(-3px)}50%{transform:translateY(4px)}}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero-photo{max-width:460px}.tag{left:12px}}
+
+/* load sequence (one orchestrated moment) */
+.reveal-line{display:block;overflow:hidden}
+.reveal-line>span{display:block;transform:translateY(105%);transition:transform .9s cubic-bezier(.2,.75,.2,1)}
+.loaded .reveal-line>span{transform:none;animation:stretch 1.5s cubic-bezier(.2,.75,.2,1) both}
+@keyframes stretch{from{font-variation-settings:"wdth" 62}to{font-variation-settings:"wdth" 125}}
+.loaded .reveal-line:nth-child(2)>span{animation-delay:.08s}
+.loaded .reveal-line:nth-child(3)>span{animation-delay:.16s}
+.loaded .reveal-line:nth-child(2)>span{transition-delay:.08s}
+.loaded .reveal-line:nth-child(3)>span{transition-delay:.16s}
+.seam path{stroke-dasharray:9 7;}
+.seam .mask-path{stroke:#fff;stroke-width:8;stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 1.4s .45s cubic-bezier(.6,.1,.3,1)}
+.loaded .seam .mask-path{stroke-dashoffset:0}
+.fade-in{opacity:0;transform:translateY(10px);transition:opacity .8s .7s,transform .8s .7s}
+.loaded .fade-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal-line>span,.fade-in{transform:none!important;opacity:1!important;transition:none!important;animation:none!important}
+  .seam .mask-path{stroke-dashoffset:0!important;transition:none!important}
+  .hero-photo img{transform:none!important}
+  .needle .bar{animation:none}
+}
+
+/* ---------- inside the machine: pinned photo story ---------- */
+.inside{background:var(--ink);color:#E9E2EE;padding-top:clamp(64px,9vw,120px);position:relative}
+.inside h2{color:#fff}
+.inside .lede{color:#BFB2C9}
+.inside-head{max-width:860px}
+.skip{display:inline-block;margin-top:6px;color:#CFC3D8;font-size:.92rem;font-weight:600}
+.story{position:relative;height:calc(var(--n) * 40vh + 100svh)}
+.story-stick{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(24px,4vw,56px);align-items:center;max-width:var(--max);margin:0 auto;padding:96px var(--gutter) 32px}
+.count{font-variation-settings:"wdth" 125;font-weight:870;font-size:clamp(3.4rem,8vw,6.5rem);line-height:.9;color:#fff;display:flex;align-items:baseline;gap:.12em;font-variant-numeric:tabular-nums;margin:0}
+.count small{font-size:.3em;color:#8E7E9A;font-weight:700;font-variation-settings:"wdth" 100}
+.cap{min-height:4.6em;font-size:1.25rem;line-height:1.45;color:#E9E2EE;margin:18px 0 22px;max-width:30ch}
+.segs{display:flex;gap:6px;max-width:320px}
+.segs i{flex:1;height:4px;border-radius:2px;background:#46344F;transition:background .35s}
+.segs i.on{background:var(--thread)}
+.stage{position:relative;height:100%;max-height:calc(100svh - 128px);border-radius:var(--r-lg);overflow:hidden;background:#331d3f;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.shot{all:unset;position:absolute;inset:0;cursor:zoom-in;opacity:0;transition:opacity .6s ease}
+.shot.on{opacity:1;z-index:1}
+.shot:focus-visible{outline:3px solid var(--thread);outline-offset:-6px;border-radius:var(--r-lg)}
+.shot img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.shot.contain img{object-fit:contain}
+.shot.on img{transform:scale(1)}
+.zoom-hint{position:absolute;right:14px;bottom:14px;z-index:2;display:flex;align-items:center;gap:8px;background:rgba(34,18,43,.72);backdrop-filter:blur(6px);color:#fff;font-size:.85rem;font-weight:600;padding:8px 12px;border-radius:999px;pointer-events:none}
+.zoom-hint svg{width:16px;height:16px}
+.inside-foot{max-width:var(--max);margin:0 auto;padding:8px var(--gutter) clamp(64px,9vw,110px);display:flex;gap:24px;align-items:center;flex-wrap:wrap;color:#BFB2C9}
+.inside-foot strong{color:#fff}
+@media (max-width:860px){
+  .story-stick{grid-template-columns:1fr;grid-template-rows:1fr auto;padding:84px var(--gutter) 96px;gap:16px;align-items:stretch}
+  .stage{max-height:none;min-height:0}
+  .story-text{order:2}
+  .count{font-size:2.4rem}
+  .cap{font-size:1.02rem;min-height:3.1em;margin:8px 0 12px}
+}
+@media (prefers-reduced-motion:reduce){.shot,.shot img{transition:none}.shot img{transform:none}}
+
+/* ---------- lightbox ---------- */
+dialog.lb{padding:0;border:0;background:transparent;max-width:none;max-height:none;overflow:visible;color:#fff}
+dialog.lb::backdrop{background:rgba(20,10,26,.88);backdrop-filter:blur(4px)}
+.lb figure{margin:0}
+.lb img{max-width:min(94vw,1200px);max-height:82svh;width:auto;height:auto;border-radius:12px;display:block}
+.lb figcaption{margin-top:12px;font-size:1rem;max-width:60ch}
+.lb .x{position:absolute;top:-56px;right:0;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:#fff;cursor:pointer;display:grid;place-items:center}
+.lb .x:hover{background:rgba(255,255,255,.12)}
+.lb .x svg{width:20px;height:20px}
+::view-transition-group(zoom){animation-duration:.48s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.3s}
+.zoomable{cursor:zoom-in}
+
+/* ---------- mobile call bar ---------- */
+.callbar{display:none}
+@media (max-width:760px){
+  .callbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:30;display:flex;gap:8px;padding:7px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-radius:999px;box-shadow:0 12px 30px -10px rgba(34,18,43,.55);transform:translateY(150%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+  .callbar.show{transform:none}
+  .callbar .btn{flex:1;justify-content:center;padding:12px 14px}
+  .callbar .btn.ghost{flex:0 0 auto}
+  footer{padding-bottom:110px}
+}
+@media (prefers-reduced-motion:reduce){.callbar{transition:none}}
+
+/* ---------- services: machine diagram ---------- */
+.services{padding:clamp(72px,10vw,130px) 0}
+.svc-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(32px,6vw,80px);align-items:center;margin-top:48px}
+.tabs{display:flex;flex-direction:column;gap:10px}
+.tab{all:unset;cursor:pointer;display:block;padding:20px 22px;border-radius:14px;border:1.5px solid var(--steel);transition:border-color .25s,background .25s}
+.tab:focus-visible{outline:3px solid var(--thread);outline-offset:3px}
+.tab .t{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.3rem;font-variation-settings:"wdth" 112;color:var(--ink)}
+.tab .t i{width:12px;height:12px;border-radius:50%;background:var(--steel-d);transition:background .25s,box-shadow .25s}
+.tab .s{display:block;color:var(--muted);font-weight:600;font-size:.95rem;margin:2px 0 0 24px}
+.tab .d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.tab .d>div{overflow:hidden}
+.tab .d p{margin:12px 0 0 24px;color:var(--text)}
+.tab[aria-selected="true"]{border-color:var(--plum);background:#fff}
+.tab[aria-selected="true"] .t i{background:var(--thread);box-shadow:0 0 0 5px rgba(226,69,122,.18)}
+.tab[aria-selected="true"] .d{grid-template-rows:1fr}
+.diagram{background:var(--steel);border-radius:var(--r-lg);padding:clamp(18px,3vw,36px);position:relative}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram .body{fill:#fff;stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+.diagram .ln{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.diagram .thin{fill:none;stroke:var(--steel-d);stroke-width:2;stroke-linecap:round}
+.zone{opacity:0;transition:opacity .45s}
+.zone .hl{fill:var(--thread)}
+.zone .ring{fill:none;stroke:var(--thread);stroke-width:2.5;stroke-dasharray:6 6}
+.zone.on{opacity:1}
+.zone.on .ring{animation:spin 14s linear infinite}
+.zone .hl{opacity:.16}
+@keyframes spin{to{stroke-dashoffset:-240}}
+.diagram .label{font:700 19px "Archivo",sans-serif;fill:var(--ink)}
+.wheel{transform-origin:556px 120px;transform-box:view-box}
+.diagram.spin .wheel{animation:wheel 2.4s linear infinite}
+@keyframes wheel{to{transform:rotate(360deg)}}
+.nbar{transform-box:view-box}
+.diagram.spin .nbar{animation:sew .4s ease-in-out infinite}
+.diagram figcaption{font-size:.85rem;color:var(--muted);margin-top:10px}
+@media (prefers-reduced-motion:reduce){.zone.on .ring,.diagram.spin .wheel,.diagram.spin .nbar{animation:none}}
+@media (max-width:860px){.svc-grid{grid-template-columns:1fr}.diagram{order:-1}}
+
+/* ---------- process ---------- */
+.process{background:var(--steel);padding:clamp(72px,10vw,130px) 0}
+.steps-wrap{position:relative;margin-top:56px}
+.steps{list-style:none;margin:0;padding:0;position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.track{position:absolute;left:0;right:0;top:27px;height:4px;pointer-events:none}
+.track svg{width:100%;height:12px;overflow:visible}
+.track .base{stroke:#C9CED4;stroke-width:3;stroke-dasharray:10 8;fill:none}
+.track .sewn{stroke:var(--thread);stroke-width:3;stroke-dasharray:10 8;fill:none}
+.step{position:relative}
+.knot{width:58px;height:58px;border-radius:50%;background:var(--paper);border:3px solid #C9CED4;display:grid;place-items:center;font-variation-settings:"wdth" 70;font-weight:800;font-size:1.35rem;color:var(--steel-d);transition:border-color .4s,color .4s,background .4s,transform .4s;position:relative;z-index:1}
+.step.done .knot{border-color:var(--thread);color:#fff;background:var(--thread);transform:scale(1.04)}
+.step h3{margin:22px 0 10px;font-variation-settings:"wdth" 105}
+.step p{color:var(--muted);font-size:1rem}
+@media (max-width:900px){
+  .steps{grid-template-columns:1fr;gap:34px;padding-left:0}
+  .track{left:27px;right:auto;top:0;bottom:0;width:4px;height:auto}
+  .track svg{width:12px;height:100%}
+  .step{display:grid;grid-template-columns:58px 1fr;gap:0 22px}
+  .step h3{margin:12px 0 8px}
+  .step .txt{grid-column:2}
+  .step .knot{grid-row:1/3}
+}
+
+/* ---------- before/after ---------- */
+.restore{padding:clamp(72px,10vw,130px) 0}
+.restore .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,80px);align-items:center}
+.ba{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:796/376;background:#000;user-select:none;touch-action:pan-y;box-shadow:0 30px 60px -30px rgba(34,18,43,.5)}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:0;pointer-events:none}
+.ba .handle::before{content:"";position:absolute;top:0;bottom:0;left:-1.5px;width:3px;background:repeating-linear-gradient(180deg,#fff 0 8px,transparent 8px 13px)}
+.ba .knob{position:absolute;top:50%;left:0;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.ba .knob svg{width:26px;height:26px}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba-labels{display:flex;justify-content:space-between;margin-top:12px;font-size:.9rem;color:var(--muted);font-weight:600}
+.ba:has(input:focus-visible){outline:3px solid var(--thread);outline-offset:4px}
+@media (max-width:860px){.restore .wrap{grid-template-columns:1fr}}
+
+/* ---------- bench / about ---------- */
+.bench{padding:0 0 clamp(72px,10vw,130px)}
+.bench .wrap{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;align-items:end}
+.bench .owner{grid-column:1/5;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4}
+.bench .owner img{width:100%;height:100%;object-fit:cover}
+.bench .copy{grid-column:5/9;padding:0 0 10px 12px}
+.bench .copy .big .num{font-variant-numeric:tabular-nums}
+.bench .copy .big{font-variation-settings:"wdth" 125;font-weight:870;font-size:clamp(4rem,9vw,7.5rem);line-height:.85;color:var(--plum);display:block}
+.bench .copy .big small{font-size:.28em;font-variation-settings:"wdth" 100;font-weight:700;color:var(--ink);display:block;line-height:1.2;margin-top:10px}
+.bench .machines{grid-column:9/13;display:grid;gap:20px}
+.bench .machines figure{margin:0;background:#fff;border-radius:14px;padding:14px;border:1.5px solid var(--steel)}
+.bench .machines img{aspect-ratio:4/3;object-fit:cover;border-radius:8px;width:100%}
+.bench .machines figcaption{font-size:.88rem;color:var(--muted);margin-top:8px}
+.also{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.also span{border:1.5px dashed var(--plum-2);color:var(--plum);border-radius:999px;padding:6px 14px;font-weight:600;font-size:.92rem}
+@media (max-width:900px){.bench .wrap{grid-template-columns:1fr 1fr}.bench .owner{grid-column:1/2}.bench .copy{grid-column:2/3;padding:0}.bench .machines{grid-column:1/3;grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.bench .wrap{grid-template-columns:1fr}.bench .owner,.bench .copy,.bench .machines{grid-column:1/-1}.bench .machines{grid-template-columns:1fr 1fr;gap:12px}}
+
+/* ---------- booking ---------- */
+.book{background:var(--plum);color:#EFE6F4;padding:clamp(72px,10vw,130px) 0;position:relative;overflow:hidden}
+.book h2{color:#fff}
+.book .lede{color:#D6C6E0}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);margin-top:40px}
+.bring{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.bring li{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start;background:rgba(255,255,255,.06);border-radius:14px;padding:16px;border:1px solid rgba(255,255,255,.1)}
+.bring svg{width:64px;height:64px}
+.bring b{color:#fff;display:block;font-size:1.08rem}
+.bring span{font-size:.95rem;color:#D6C6E0}
+.turn{margin-top:30px}
+.turn .bar{position:relative;height:14px;border-radius:999px;background:rgba(255,255,255,.12);margin:14px 0 8px}
+.turn .fill{position:absolute;top:0;bottom:0;left:calc(3/14*100%);right:0;border-radius:999px;background:linear-gradient(90deg,var(--brass),#E0B85A);transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.3,.7,.2,1)}
+.turn.in .fill{transform:scaleX(1)}
+.turn .ticks{display:flex;justify-content:space-between;font-size:.82rem;color:#CDBAD8}
+.turn p{font-size:.95rem;color:#D6C6E0;margin-top:10px}
+form{background:#fff;color:var(--text);border-radius:var(--r-lg);padding:clamp(22px,3vw,36px);display:grid;gap:16px;align-self:start}
+form h3{font-size:1.5rem;font-variation-settings:"wdth" 112;font-weight:800}
+label{display:grid;gap:6px;font-weight:600;font-size:.95rem;color:var(--ink)}
+label em{font-style:normal;color:var(--muted);font-weight:500}
+input,textarea{font:inherit;padding:12px 14px;border:1.5px solid #CFD3D8;border-radius:10px;background:var(--paper);color:var(--text);transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus{outline:none;border-color:var(--plum);background:#fff}
+.field{position:relative;display:block}
+.field input,.field textarea{width:100%;display:block}
+.stitch{position:absolute;left:-6px;top:-6px;width:calc(100% + 12px);height:calc(100% + 12px);pointer-events:none;overflow:visible}
+.stitch .seamline{fill:none;stroke:var(--thread);stroke-width:2;stroke-dasharray:6 5}
+.stitch .draw{fill:none;stroke:#fff;stroke-width:8;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .8s cubic-bezier(.5,.1,.3,1)}
+.field:focus-within .draw{stroke-dashoffset:0}
+@media (prefers-reduced-motion:reduce){.stitch .draw{transition:none}}
+textarea{min-height:120px;resize:vertical}
+[aria-invalid="true"]{border-color:#C0303F;box-shadow:0 0 0 4px rgba(192,48,63,.15)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-note{font-size:.88rem;color:var(--muted);margin:0}
+.sent{display:none;align-items:center;gap:10px;color:var(--plum);font-weight:700}
+.sent.show{display:flex}
+.sent svg{width:22px;height:22px}
+.sent path{stroke-dasharray:30;stroke-dashoffset:30;animation:tick .5s .1s forwards}
+@keyframes tick{to{stroke-dashoffset:0}}
+@media (max-width:860px){.book-grid{grid-template-columns:1fr}.book-grid form{order:-1}.row2{grid-template-columns:1fr}}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#BFB2C9;padding:56px 0 40px;font-size:.95rem}
+footer .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center}
+footer img{width:84px;border-radius:50%}
+footer b{color:#fff;font-variation-settings:"wdth" 80;font-size:1.15rem;display:block}
+footer .contact a{display:block;text-decoration:none;color:#fff;font-weight:600}
+footer .contact a:hover{color:#F3A6C2}
+footer .quote{font-style:italic;font-variation-settings:"wdth" 90}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr}}
+
+/* section-in (used once per section, subtle) */
+.in-view{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.in-view.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.in-view{opacity:1;transform:none;transition:none}.turn .fill{transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<div class="concept">Redesign concept for <a href="https://stitchperfect.ca/">stitchperfect.ca</a>. Not the official site.</div>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Stitch Perfect home">
+      <img src="img/logo.webp" alt="" width="46" height="46">
+      <span>Stitch Perfect<small>Sewing machine service</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a class="hide-s" href="#services">Services</a>
+      <a class="hide-s" href="#process">How it works</a>
+      <a class="hide-s" href="#book">Book</a>
+      <a class="btn" href="tel:+14038695104" aria-label="Call 403-869-5104">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        <span class="ptxt">403-869-5104</span>
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path class="l1" d="M4 6h16"/><path class="l2" d="M4 12h16"/><path class="l3" d="M4 18h16"/></svg></button>
+    </nav>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Sections"><div>
+    <a href="#inside">What I find inside</a>
+    <a href="#services">Services</a>
+    <a href="#process">How it works</a>
+    <a href="#book">Book a service</a>
+  </div></nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>
+        <span class="reveal-line"><span>Keep your</span></span>
+        <span class="reveal-line"><span>machine</span></span>
+        <span class="reveal-line"><span>stitching perfectly.</span></span>
+      </h1>
+      <svg class="seam" viewBox="0 0 600 22" preserveAspectRatio="none" aria-hidden="true">
+        <defs><mask id="sew"><path class="mask-path" d="M0 11 C 150 2, 300 20, 600 9"/></mask></defs>
+        <path mask="url(#sew)" d="M0 11 C 150 2, 300 20, 600 9"/>
+      </svg>
+      <p class="lede fade-in">Cleaning, timing and tune-ups for domestic and vintage sewing machines. A regular service now saves you a costly repair later.</p>
+      <div class="cta fade-in">
+        <a class="btn" href="#book">Book a service</a>
+        <a class="btn ghost" href="#inside">See what's inside</a>
+      </div>
+      <div class="facts fade-in">
+        <div><b>15 years</b>at the bench</div>
+        <div><b>3–14 days</b>typical turnaround</div>
+        <div><b>By appointment</b>machine drop-off</div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="frame"><img src="img/hero.webp" alt="A sewing machine with its casing removed on the workbench, lit from below" width="640" height="480"></div>
+      <div class="tag fade-in">
+        <svg class="needle" viewBox="0 0 34 34" aria-hidden="true">
+          <g class="bar"><rect x="15" y="0" width="4" height="16" rx="1" fill="#4A2260"/><path d="M17 16 L17 27" stroke="#8A9099" stroke-width="2" stroke-linecap="round"/></g>
+          <path d="M2 30 H32" stroke="#E2457A" stroke-width="2.5" stroke-dasharray="4 3" stroke-linecap="round"/>
+        </svg>
+        <span><b>Every machine is test-sewn</b> and comes home with its stitch samples.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE -->
+<section class="inside" id="inside" aria-labelledby="inside-h">
+  <div class="wrap inside-head">
+    <h2 id="inside-h">This is what “it still sews fine” looks like inside.</h2>
+    <p class="lede" style="margin-top:16px">Lint packs into the gears, thread wraps around shafts, and old oil hardens into varnish. You can't see any of it until the covers come off. Keep scrolling: every photo is from a real machine on my bench.</p>
+    <a class="skip" href="#services">Skip the photos</a>
+  </div>
+  <div class="story" id="story" style="--n:8">
+    <div class="story-stick">
+      <div class="story-text">
+        <p class="count" aria-hidden="true"><span id="count-n">1</span><small>of 8</small></p>
+        <p class="cap" id="cap" aria-live="polite">Lint packed around the hook drive, under the bed.</p>
+        <div class="segs" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="stage">
+        <button type="button" class="shot on" data-cap="Lint packed around the hook drive, under the bed." aria-label="Enlarge photo 1: Lint packed around the hook drive, under the bed."><img src="img/m1.webp" alt="Grey and pink lint packed around the hook drive under a machine's bed"></button>
+        <button type="button" class="shot" data-cap="Fluff woven through the needle-bar linkage." tabindex="-1" aria-label="Enlarge photo 2: Fluff woven through the needle-bar linkage."><img src="img/m2.webp" alt="Fluff wrapped through the needle-bar linkage"></button>
+        <button type="button" class="shot" data-cap="Thread wound into the take-up mechanism." tabindex="-1" aria-label="Enlarge photo 3: Thread wound into the take-up mechanism."><img src="img/m3.webp" alt="Thread wound into the take-up mechanism" loading="lazy"></button>
+        <button type="button" class="shot" data-cap="Felted lint smothering the bobbin area and wiring." tabindex="-1" aria-label="Enlarge photo 4: Felted lint smothering the bobbin area and wiring."><img src="img/m6.webp" alt="Felted lint around the bobbin area and wiring" loading="lazy"></button>
+        <button type="button" class="shot" data-cap="Thread fibres wrapped tight around a shaft bushing." tabindex="-1" aria-label="Enlarge photo 5: Thread fibres wrapped tight around a shaft bushing."><img src="img/m4.webp" alt="Thread fibres wrapped around a shaft bushing" loading="lazy"></button>
+        <button type="button" class="shot" data-cap="A ball of lint wound onto the hook shaft gear." tabindex="-1" aria-label="Enlarge photo 6: A ball of lint wound onto the hook shaft gear."><img src="img/m7.webp" alt="A ball of lint wrapped on the hook shaft gear" loading="lazy"></button>
+        <button type="button" class="shot" data-cap="Lint packed into the feed housing." tabindex="-1" aria-label="Enlarge photo 7: Lint packed into the feed housing."><img src="img/m5.webp" alt="Lint packed into the feed housing of an opened machine" loading="lazy"></button>
+        <button type="button" class="shot contain" data-cap="Under the needle plate, before and after a clean." tabindex="-1" aria-label="Enlarge photo 8: Under the needle plate, before and after a clean."><img src="img/shot1.webp" alt="Four photos of a machine's needle plate area before and after cleaning" loading="lazy"></button>
+        <span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5M11 8.5v5M8.5 11h5"/></svg>Tap to enlarge</span>
+      </div>
+    </div>
+  </div>
+  <div class="inside-foot">
+    <p style="margin:0"><strong>Skipped stitches, loops, noise or a sluggish motor?</strong> It's usually this, not a broken part.</p>
+    <a class="btn" style="background:var(--thread)" href="#book">Book a clean</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services" aria-labelledby="svc-h">
+  <div class="wrap">
+    <h2 id="svc-h" class="in-view">Three things I check on every machine</h2>
+    <p class="lede in-view" style="margin-top:16px">The goal is simple: no skipped stitches, even tension, and a motor that runs smooth at every speed.</p>
+
+    <div class="svc-grid">
+      <div class="tabs" role="tablist" aria-label="Services">
+        <button class="tab" role="tab" id="t-align" aria-controls="diagram" aria-selected="true" data-zone="align">
+          <span class="t"><i></i>Alignment</span>
+          <span class="s">Hook timing and synchronization</span>
+          <span class="d"><div><p>I set the hook timing, needle-bar height and feed dog clearance so the machine stops skipping stitches on light and heavy fabrics alike.</p></div></span>
+        </button>
+        <button class="tab" role="tab" id="t-maint" aria-controls="diagram" aria-selected="false" tabindex="-1" data-zone="maint">
+          <span class="t"><i></i>Maintenance</span>
+          <span class="s">Preventative overhaul</span>
+          <span class="d"><div><p>Ultrasonic cleaning of metal parts, hardened grease removed, lint blown off the circuit boards, then fresh oil and grease that won't gum up.</p></div></span>
+        </button>
+        <button class="tab" role="tab" id="t-elec" aria-controls="diagram" aria-selected="false" tabindex="-1" data-zone="elec">
+          <span class="t"><i></i>Electrical</span>
+          <span class="s">Motor and drive inspection</span>
+          <span class="d"><div><p>Especially for vintage machines: carbon brushes, foot pedal, wiring and drive belt checked so the motor keeps steady power and speed.</p></div></span>
+        </button>
+      </div>
+
+      <figure class="diagram" id="diagram" role="tabpanel" aria-labelledby="t-align" style="margin:0">
+        <svg viewBox="30 20 600 390" role="img" aria-label="Diagram of a sewing machine highlighting the area for the selected service">
+          <!-- bed -->
+          <rect class="body" x="40" y="270" width="520" height="56" rx="12"/>
+          <!-- pillar + arm + head -->
+          <path class="body" d="M470 270 V110 Q470 70 430 70 H150 Q110 70 110 110 V200 Q110 216 126 216 H170 Q186 216 186 200 V150 Q186 140 196 140 H420 V270 Z"/>
+          <!-- handwheel -->
+          <circle class="body" cx="520" cy="120" r="44"/>
+          <g class="wheel" style="transform-origin:520px 120px">
+            <path class="thin" d="M520 84 V156 M484 120 H556"/>
+          </g>
+          <!-- needle bar -->
+          <g class="nbar"><rect x="140" y="214" width="14" height="30" fill="#fff" stroke="#22122B" stroke-width="3"/><path class="ln" d="M147 244 V262"/></g>
+          <!-- presser foot -->
+          <path class="ln" d="M164 216 V258 H186"/>
+          <!-- needle plate & feed -->
+          <rect x="112" y="266" width="90" height="8" rx="2" fill="#E8EBEE" stroke="#22122B" stroke-width="2"/>
+          <!-- bobbin under bed -->
+          <circle cx="147" cy="300" r="13" fill="none" stroke="#8A9099" stroke-width="2.5"/>
+          <!-- spool pins + thread -->
+          <path class="ln" d="M300 70 V44 M360 70 V44"/>
+          <rect x="290" y="30" width="20" height="18" rx="3" fill="#E2457A"/>
+          <!-- stitch line on fabric -->
+          <path d="M60 266 H230" stroke="#E2457A" stroke-width="3" stroke-dasharray="7 5"/>
+          <!-- motor -->
+          <rect x="430" y="200" width="30" height="40" rx="6" fill="#E8EBEE" stroke="#22122B" stroke-width="2.5"/>
+          <!-- pedal + cord -->
+          <path class="thin" d="M470 300 C 520 340, 560 340, 560 372"/>
+          <path class="body" d="M520 372 H608 L598 396 H530 Z"/>
+          <!-- zones -->
+          <g class="zone on" data-zone="align">
+            <ellipse class="hl" cx="150" cy="262" rx="78" ry="62"/>
+            <ellipse class="ring" cx="150" cy="262" rx="82" ry="66"/>
+            <text class="label" x="62" y="356">Hook, needle bar, feed dogs</text>
+          </g>
+          <g class="zone" data-zone="maint">
+            <rect class="hl" x="96" y="56" width="390" height="285" rx="30"/>
+            <rect class="ring" x="90" y="50" width="402" height="297" rx="34"/>
+            <text class="label" x="96" y="372">Gears, shafts, races, boards</text>
+          </g>
+          <g class="zone" data-zone="elec">
+            <ellipse class="hl" cx="500" cy="300" rx="110" ry="110"/>
+            <ellipse class="ring" cx="500" cy="300" rx="114" ry="114"/>
+            <text class="label" x="350" y="174">Motor, belt, pedal</text>
+          </g>
+        </svg>
+        <figcaption id="diagram-cap">Hover or tap a service to see where the work happens.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process" aria-labelledby="proc-h">
+  <div class="wrap">
+    <h2 id="proc-h" class="in-view">What happens on the bench</h2>
+    <p class="lede in-view" style="margin-top:16px">Four steps, every time. You're told what I find before any work begins.</p>
+    <div class="steps-wrap">
+    <div class="track" aria-hidden="true">
+      <svg preserveAspectRatio="none" id="track-svg"><line class="base" x1="0" y1="6" x2="100%" y2="6"/><line class="sewn" id="sewn" x1="0" y1="6" x2="0" y2="6"/></svg>
+    </div>
+    <ol class="steps" id="steps">
+      <li class="step"><div class="knot">1</div><div class="txt"><h3>Diagnose</h3><p>I check the needle plate and bobbin clearances, then sew test stitches on quilting cotton to find exactly what's off.</p></div></li>
+      <li class="step"><div class="knot">2</div><div class="txt"><h3>Deep clean</h3><p>Covers come off. Packed lint, thread tangles and varnished oil are cleared from the gears, shafts and shuttle race.</p></div></li>
+      <li class="step"><div class="knot">3</div><div class="txt"><h3>Realign</h3><p>Hook-to-needle clearance and feed cams are reset to factory spec with precision timing gauges.</p></div></li>
+      <li class="step"><div class="knot">4</div><div class="txt"><h3>Test sew</h3><p>Upper and lower tension balanced on straight, zig-zag and specialty stitches. The samples come home with your machine.</p></div></li>
+    </ol>
+    </div>
+  </div>
+</section>
+
+<!-- RESTORE -->
+<section class="restore" aria-labelledby="ba-h">
+  <div class="wrap">
+    <div class="in-view">
+      <h2 id="ba-h">Vintage machines welcome</h2>
+      <p class="lede" style="margin-top:16px">Older machines were built to last. They just need someone who knows them. Here's a Dressmaker from my bench, before and after.</p>
+      <p style="color:var(--muted)">Drag the slider to compare.</p>
+    </div>
+    <div>
+      <div class="ba" id="ba">
+        <img src="img/before.webp" alt="Before: a rusted, dirty vintage Dressmaker sewing machine head" loading="lazy">
+        <img class="after" src="img/after.webp" alt="After: the same Dressmaker restored with glossy black paint and gold decals" loading="lazy">
+        <div class="handle"><div class="knob"><svg viewBox="0 0 26 26" fill="none" stroke="#4A2260" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7l-5 6 5 6M17 7l5 6-5 6"/></svg></div></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare before and after restoration">
+      </div>
+      <div class="ba-labels"><span>Before</span><span>After</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCH / ABOUT -->
+<section class="bench" aria-labelledby="bench-h">
+  <div class="wrap">
+    <div class="owner in-view"><img class="zoomable" tabindex="0" role="button" src="img/owner.webp" alt="The Stitch Perfect technician at the bench, holding a bottle of sewing machine oil next to an opened machine" loading="lazy"></div>
+    <div class="copy in-view">
+      <h2 id="bench-h" class="sr">About the workshop</h2>
+      <span class="big" aria-hidden="true"><span class="num" id="years">15</span><small>years servicing sewing machines</small></span>
+      <p style="margin-top:22px">Every domestic and vintage machine gets the same care. I diagnose timing faults, balance tension, clear compacted lint, blow off the circuit boards, then oil and grease everything that moves.</p>
+      <div class="also" aria-label="Also offered"><span>Troubleshooting</span><span>Quick fixes</span><span>Sewing lessons</span></div>
+    </div>
+    <div class="machines in-view">
+      <figure><img class="zoomable" tabindex="0" role="button" src="img/shot3.webp" alt="A Brother Innov-is computerized sewing machine" loading="lazy"><figcaption>Computerized machines</figcaption></figure>
+      <figure><img class="zoomable" tabindex="0" role="button" src="img/euro.webp" alt="A Euro-Pro Denim and Silk machine with a stitch test sample" loading="lazy"><figcaption>Everyday mechanical machines</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book" id="book" aria-labelledby="book-h">
+  <div class="wrap">
+    <h2 id="book-h">Book your machine in</h2>
+    <p class="lede" style="margin-top:16px">Drop-offs are by appointment so your machine gets my full attention. Tell me the make, model and what it's doing, and I'll confirm a drop-off time.</p>
+    <div class="book-grid">
+      <div>
+        <h3 style="color:#fff;font-variation-settings:'wdth' 110;font-size:1.35rem;margin-bottom:16px">What to bring</h3>
+        <ul class="bring">
+          <li>
+            <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" fill="none" stroke="#E0B85A" stroke-width="3"/><circle cx="32" cy="32" r="9" fill="none" stroke="#fff" stroke-width="3"/><path d="M50 18 L58 12" stroke="#E0B85A" stroke-width="3" stroke-linecap="round"/><path d="M14 40 Q32 48 50 40" stroke="#E2457A" stroke-width="2.5" fill="none"/></svg>
+            <div><b>Bobbin case</b><span>So I can check the thread pickup and hook timing under test.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M30 6 V30" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M18 30 H44 L50 44 H12 Z" fill="none" stroke="#E0B85A" stroke-width="3" stroke-linejoin="round"/><path d="M8 52 H56" stroke="#E2457A" stroke-width="2.5" stroke-dasharray="5 4" stroke-linecap="round"/></svg>
+            <div><b>Standard presser foot</b><span>Your zig-zag or general-purpose foot, to check feed and pressure.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 50 H54 L50 30 Q48 22 40 22 H22 Q14 22 12 30 Z" fill="none" stroke="#E0B85A" stroke-width="3" stroke-linejoin="round"/><path d="M32 22 C 32 10, 46 12, 52 6" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+            <div><b>Foot pedal and power cord</b><span>For a full check of the motor and speed control.</span></div>
+          </li>
+        </ul>
+        <div class="turn" id="turn">
+          <h3 style="color:#fff;font-variation-settings:'wdth' 110;font-size:1.35rem">Turnaround</h3>
+          <div class="bar" role="img" aria-label="Typical turnaround 3 to 14 business days"><div class="fill"></div></div>
+          <div class="ticks" aria-hidden="true"><span>Drop-off</span><span>Day 3</span><span>Day 7</span><span>Day 14</span></div>
+          <p>Most machines are ready in 3 to 14 business days, depending on what they need.</p>
+        </div>
+      </div>
+
+      <form id="enq" novalidate>
+        <h3>Send an enquiry</h3>
+        <div class="row2">
+          <label>Your name<span class="field"><input name="name" required autocomplete="name"><svg class="stitch" aria-hidden="true"><defs><mask id="mk-name"><rect class="draw" x="0" y="0" width="100%" height="100%" rx="15" pathLength="100"/></mask></defs><rect class="seamline" mask="url(#mk-name)" x="0" y="0" width="100%" height="100%" rx="15"/></svg></span></label>
+          <label>Phone<span class="field"><input name="phone" type="tel" autocomplete="tel" placeholder="Optional"><svg class="stitch" aria-hidden="true"><defs><mask id="mk-phone"><rect class="draw" x="0" y="0" width="100%" height="100%" rx="15" pathLength="100"/></mask></defs><rect class="seamline" mask="url(#mk-phone)" x="0" y="0" width="100%" height="100%" rx="15"/></svg></span></label>
+        </div>
+        <label>Email<span class="field"><input name="email" type="email" required autocomplete="email"><svg class="stitch" aria-hidden="true"><defs><mask id="mk-email"><rect class="draw" x="0" y="0" width="100%" height="100%" rx="15" pathLength="100"/></mask></defs><rect class="seamline" mask="url(#mk-email)" x="0" y="0" width="100%" height="100%" rx="15"/></svg></span></label>
+        <label>Machine make and model<span class="field"><input name="model" required placeholder="e.g. Janome Sewist 709"><svg class="stitch" aria-hidden="true"><defs><mask id="mk-model"><rect class="draw" x="0" y="0" width="100%" height="100%" rx="15" pathLength="100"/></mask></defs><rect class="seamline" mask="url(#mk-model)" x="0" y="0" width="100%" height="100%" rx="15"/></svg></span></label>
+        <label>What's it doing?<span class="field"><textarea name="fault" required placeholder="Skipping stitches, loud clunk, thread bunching underneath…"></textarea><svg class="stitch" aria-hidden="true"><defs><mask id="mk-fault"><rect class="draw" x="0" y="0" width="100%" height="100%" rx="15" pathLength="100"/></mask></defs><rect class="seamline" mask="url(#mk-fault)" x="0" y="0" width="100%" height="100%" rx="15"/></svg></span></label>
+        <button class="btn" type="submit" style="justify-self:start">Send enquiry</button>
+        <p class="sent" id="sent" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg><span>Opening your email app with the details filled in.</span></p>
+        <p class="form-note" id="form-note">Or call <a href="tel:+14038695104">403-869-5104</a> · <a href="mailto:stitchperfect137@gmail.com">stitchperfect137@gmail.com</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<dialog class="lb" id="lb" aria-label="Enlarged photo">
+  <button class="x" type="button" id="lb-x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+</dialog>
+
+<div class="callbar" id="callbar">
+  <a class="btn" href="tel:+14038695104"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call 403-869-5104</a>
+  <a class="btn ghost" href="#book">Book</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo.webp" alt="Stitch Perfect Sewing Machine Service logo" loading="lazy">
+    <div>
+      <b>Stitch Perfect Sewing Machine Service</b>
+      <span class="quote">Keeping your sewing machine stitching perfectly.</span><br>
+      Cleaning and timing calibration for domestic and vintage machines.
+    </div>
+    <nav class="fnav" aria-label="Footer" style="grid-column:1/-1;order:3">
+      <a href="#inside">What I find inside</a><a href="#services">Services</a><a href="#process">How it works</a><a href="#book">Book a service</a><a href="#top">Back to top</a>
+    </nav>
+    <div class="contact">
+      <a href="tel:+14038695104">403-869-5104</a>
+      <a href="mailto:stitchperfect137@gmail.com">stitchperfect137@gmail.com</a>
+      <span>Drop-off by appointment</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(() => document.documentElement.classList.add('loaded'));
+  document.body.classList.add('loaded');
+
+  // header border on scroll
+  const top = document.getElementById('top');
+  const onScroll = () => top.classList.toggle('scrolled', scrollY > 8);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // in-view reveals + turnaround bar
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.2});
+  document.querySelectorAll('.in-view,.turn').forEach(el => io.observe(el));
+
+  // pinned photo story
+  const story = document.getElementById('story');
+  const shots = [...story.querySelectorAll('.shot')];
+  const segsEl = [...story.querySelectorAll('.segs i')];
+  const cap = document.getElementById('cap'), countN = document.getElementById('count-n');
+  let cur = 0;
+  const storyStep = () => {
+    const r = story.getBoundingClientRect();
+    const total = r.height - innerHeight;
+    const p = Math.min(1, Math.max(0, -r.top / total));
+    const i = Math.min(shots.length - 1, Math.floor(p * shots.length));
+    if (i === cur) return;
+    const hadFocus = shots[cur] === document.activeElement;
+    cur = i;
+    shots.forEach((s, k) => { s.classList.toggle('on', k === i); s.tabIndex = k === i ? 0 : -1; });
+    segsEl.forEach((s, k) => s.classList.toggle('on', k <= i));
+    countN.textContent = i + 1;
+    cap.textContent = shots[i].dataset.cap;
+    if (hadFocus) shots[i].focus({preventScroll:true});
+    if (!reduce) cap.animate([{opacity:0, transform:'translateY(8px)'}, {opacity:1, transform:'none'}], {duration:380, easing:'ease-out'});
+  };
+  addEventListener('scroll', storyStep, {passive:true}); storyStep();
+
+  // lightbox with view transition zoom
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'), lbCap = document.getElementById('lb-cap');
+  let srcImg = null, opener = null;
+  const vt = fn => (document.startViewTransition && !reduce) ? document.startViewTransition(fn) : (fn(), null);
+  const openLb = (img, caption, trigger) => {
+    srcImg = img; opener = trigger || img;
+    img.style.viewTransitionName = 'zoom';
+    vt(async () => {
+      img.style.viewTransitionName = '';
+      lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt;
+      lbCap.textContent = caption || img.alt;
+      lbImg.style.viewTransitionName = 'zoom';
+      lb.showModal();
+      try { await lbImg.decode(); } catch (e) {}
+    });
+  };
+  const closeLb = () => {
+    if (!lb.open) return;
+    const t = vt(() => {
+      lb.close();
+      lbImg.style.viewTransitionName = '';
+      if (srcImg) srcImg.style.viewTransitionName = 'zoom';
+    });
+    const done = () => { if (srcImg) srcImg.style.viewTransitionName = ''; opener && opener.focus({preventScroll:true}); };
+    t ? t.finished.then(done, done) : done();
+  };
+  shots.forEach(b => b.addEventListener('click', () => openLb(b.querySelector('img'), b.dataset.cap, b)));
+  document.querySelectorAll('.zoomable').forEach(img => {
+    const go = () => openLb(img, img.closest('figure')?.querySelector('figcaption')?.textContent || img.alt);
+    img.addEventListener('click', go);
+    img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+  });
+  document.getElementById('lb-x').addEventListener('click', closeLb);
+  lb.addEventListener('cancel', e => { e.preventDefault(); closeLb(); });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+  // years count-up
+  const yrs = document.getElementById('years');
+  if (!reduce) {
+    yrs.textContent = '0';
+    const yo = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return; yo.disconnect();
+      let t0; const tick = ts => { t0 ??= ts; const t = Math.min(1, (ts - t0) / 1400);
+        yrs.textContent = Math.round(15 * (1 - Math.pow(1 - t, 3))); if (t < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }, {threshold:.6});
+    yo.observe(yrs);
+  }
+
+  // mobile call bar: show after the hero, hide over the booking section
+  const callbar = document.getElementById('callbar');
+  const heroEl = document.querySelector('.hero'), bookEl = document.getElementById('book');
+  const barStep = () => {
+    const past = heroEl.getBoundingClientRect().bottom < 0;
+    const b = bookEl.getBoundingClientRect();
+    const atBook = b.top < innerHeight * .9 && b.bottom > 0;
+    const show = past && !atBook;
+    callbar.classList.toggle('show', show);
+    callbar.inert = !show;
+  };
+  addEventListener('scroll', barStep, {passive:true}); barStep();
+
+  // mobile menu
+  const mb = document.querySelector('.menu-btn'), mnav = document.getElementById('mnav');
+  const setMenu = open => { mb.setAttribute('aria-expanded', open); mnav.classList.toggle('open', open); mnav.inert = !open; };
+  setMenu(false);
+  mb.addEventListener('click', () => setMenu(mb.getAttribute('aria-expanded') !== 'true'));
+  mnav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && mb.getAttribute('aria-expanded') === 'true') { setMenu(false); mb.focus(); } });
+
+  // scrollspy: underline the nav link for the section on screen
+  const links = [...document.querySelectorAll('.nav a[href^="#"]:not(.btn)')];
+  const spy = () => {
+    let curId = null;
+    for (const a of links) { const sec = document.querySelector(a.getAttribute('href')); const r = sec.getBoundingClientRect(); if (r.top < innerHeight * .4 && r.bottom > innerHeight * .4) curId = a; }
+    links.forEach(a => a === curId ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  };
+  addEventListener('scroll', spy, {passive:true}); spy();
+
+  // services tabs -> diagram zones
+  const tabs = [...document.querySelectorAll('.tab')];
+  const zones = document.querySelectorAll('.zone');
+  const diagram = document.getElementById('diagram');
+  const select = t => {
+    tabs.forEach(x => { x.setAttribute('aria-selected', x === t); x.tabIndex = x === t ? 0 : -1; });
+    zones.forEach(z => z.classList.toggle('on', z.dataset.zone === t.dataset.zone));
+    diagram.setAttribute('aria-labelledby', t.id);
+    diagram.classList.toggle('spin', t.dataset.zone === 'elec');
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('mouseenter', () => matchMedia('(hover:hover)').matches && select(t));
+    t.addEventListener('keydown', e => {
+      const d = {ArrowDown:1, ArrowRight:1, ArrowUp:-1, ArrowLeft:-1}[e.key];
+      if (!d) return; e.preventDefault();
+      const n = tabs[(i + d + tabs.length) % tabs.length]; n.focus(); select(n);
+    });
+  });
+
+  // process: thread sews along as you scroll
+  const steps = [...document.querySelectorAll('.step')];
+  const list = document.getElementById('steps');
+  const sewn = document.getElementById('sewn');
+  const svg = document.getElementById('track-svg');
+  const vertical = () => matchMedia('(max-width:900px)').matches;
+  const setLine = () => {
+    const v = vertical();
+    svg.querySelectorAll('line').forEach(l => {
+      if (v) { l.setAttribute('x1',6); l.setAttribute('x2',6); l.setAttribute('y1',0); }
+      else { l.setAttribute('y1',6); l.setAttribute('y2',6); l.setAttribute('x1',0); }
+    });
+    svg.querySelector('.base').setAttribute(v ? 'y2' : 'x2', '100%');
+    if (v) svg.querySelector('.base').setAttribute('x2', 6); else svg.querySelector('.base').setAttribute('y2', 6);
+  };
+  const progress = () => {
+    const r = list.getBoundingClientRect();
+    const start = innerHeight * .8, end = innerHeight * .35;
+    let p = (start - r.top) / (r.height + start - end);
+    if (reduce) p = r.top < innerHeight ? 1 : 0;
+    p = Math.max(0, Math.min(1, p));
+    const v = vertical();
+    const len = v ? svg.clientHeight : svg.clientWidth;
+    sewn.setAttribute(v ? 'y2' : 'x2', p * len);
+    steps.forEach((s, i) => {
+      const k = s.querySelector('.knot').getBoundingClientRect();
+      const lr = svg.getBoundingClientRect();
+      const at = v ? (k.top + k.height/2 - lr.top) : (k.left + k.width/2 - lr.left);
+      s.classList.toggle('done', p * len >= at - 4);
+    });
+  };
+  setLine(); progress();
+  addEventListener('scroll', progress, {passive:true});
+  addEventListener('resize', () => { setLine(); progress(); });
+
+  // before/after
+  const ba = document.getElementById('ba');
+  const range = ba.querySelector('input');
+  const setPos = v => ba.style.setProperty('--pos', v + '%');
+  range.addEventListener('input', () => setPos(range.value));
+  // gentle hint once when it comes into view
+  if (!reduce) {
+    const hint = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return; hint.disconnect();
+      let t0; const frames = ts => {
+        t0 ??= ts; const t = (ts - t0) / 1600; if (t > 1) { setPos(50); range.value = 50; return; }
+        const v = 50 + Math.sin(t * Math.PI * 2) * 18 * (1 - t); setPos(v); requestAnimationFrame(frames);
+      }; requestAnimationFrame(frames);
+    }, {threshold:.6});
+    hint.observe(ba);
+  }
+
+  // enquiry form -> prefilled email
+  const form = document.getElementById('enq');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const bad = [...form.querySelectorAll('[required]')].find(f => !f.value.trim() || (f.type === 'email' && !f.checkValidity()));
+    if (bad) { bad.focus(); bad.setAttribute('aria-invalid','true'); bad.addEventListener('input', () => bad.removeAttribute('aria-invalid'), {once:true}); return; }
+    const d = Object.fromEntries(new FormData(form));
+    const body = `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone || '-'}\nMachine: ${d.model}\n\nWhat it's doing:\n${d.fault}`;
+    document.getElementById('sent').classList.add('show');
+    location.href = `mailto:stitchperfect137@gmail.com?subject=${encodeURIComponent('Service enquiry: ' + d.model)}&body=${encodeURIComponent(body)}`;
+  });
+})();
+</script>
+</body>
+</html>
